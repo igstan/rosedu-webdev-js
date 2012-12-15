@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax: Asynchronous JavaScript and XML</title>
+<style type="text/css">
+input {
+  padding: 5px;
+  font-size: 100%;
+}
+</style>
+<script src="lib/jquery-1.8.3.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function (event) {
+  var userPass = function () {
+    var user = document.querySelector("#username").value;
+    var pass = document.querySelector("#password").value;
+    return btoa(user + ":" + pass);
+  };
+
+  document.querySelector("#send-request").addEventListener("click", function () {
+    // var xhr = new XMLHttpRequest;
+    // var url = "https://api.github.com/user";
+    // xhr.addEventListener("readystatechange", function (event) {
+    //   if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
+    //     var response = JSON.parse(xhr.responseText);
+    //     console.log(response.location);
+    //   }
+    // });
+    // xhr.open("GET", url);
+    // xhr.setRequestHeader("Authorization", "Basic " + userPass());
+    // xhr.send();
+
+    var xhr = new XMLHttpRequest;
+    var url = "https://api.github.com/user";
+    xhr.addEventListener("readystatechange", function (event) {
+      if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
+        var response = JSON.parse(xhr.responseText);
+        console.log(response.location);
+      }
+    });
+    xhr.open("PATCH", url);
+    xhr.setRequestHeader("Authorization", "Basic " + userPass());
+
+    var data = {
+      location: "Bucharest, Romania"
+    };
+    xhr.send(JSON.stringify(data));
+
+    // var HTTP = {
+    //   GET: function (url, successCallback, failureCallback) {
+    //     var xhr = new XMLHttpRequest;
+    //     xhr.addEventListener("readystatechange", function (event) {
+    //       if (xhr.readyState === 4) {
+    //         if (xhr.status === 200) {
+    //           successCallback(xhr.responseText);
+    //         } else {
+    //           failureCallback(xhr.responseText);
+    //         }
+    //       }
+    //     });
+    //     xhr.open("GET", url);
+    //     xhr.setRequestHeader("Authorization", "Basic " + userPass());
+    //     xhr.send();
+    //   },
+
+    //   POST: function (url, data, successCallback, failureCallback) {
+    //     var params = new FormData;
+
+    //     for (var name in data) {
+    //       params.append(name, data[name]);
+    //     }
+
+    //     var xhr = new XMLHttpRequest;
+    //     xhr.addEventListener("readystatechange", function (event) {
+    //       if (xhr.readyState === 4) {
+    //         if (xhr.status === 200) {
+    //           successCallback(xhr.responseText);
+    //         } else {
+    //           failureCallback(xhr.responseText);
+    //         }
+    //       }
+    //     });
+    //     xhr.open("POST", url);
+    //     xhr.send(params);
+    //   },
+
+    //   PATCH: function (url, data, successCallback) {
+    //     var xhr = new XMLHttpRequest;
+    //     xhr.addEventListener("readystatechange", function (event) {
+    //       if (xhr.readyState === 4) {
+    //         if (xhr.status === 200) {
+    //           successCallback(xhr.responseText);
+    //         } else {
+    //           failureCallback(xhr.responseText);
+    //         }
+    //       }
+    //     });
+    //     xhr.open("PATCH", url);
+    //     xhr.setRequestHeader("Authorization", "Basic " + userPass());
+    //     xhr.send(JSON.stringify(data));
+    //   }
+    // };
+
+    // // HTTP.GET("https://api.github.com/user", function (response) {
+    // //   var data = JSON.parse(response);
+    // //   console.log(data.location);
+    // // });
+
+    // jQuery.ajax({
+    //   url: "https://api.github.com/user",
+    //   method: "GET",
+    //   headers: {
+    //     "Authorization": "Basic " + userPass()
+    //   },
+    //   success: function (response) {
+    //     console.log(response.location);
+    //   }
+    // });
+
+    var http = {
+      get: function (url, callback) {
+
+      }
+    }
+
+    // $.get("http://localhost:8000/data.json", function (response) {
+    //   console.log(response);
+    // });
+
+    // HTTP.PATCH("https://api.github.com/user", { location: "Bucharest, Romania" }, function (response) {
+    //   var data = JSON.parse(response);
+    //   console.log(data);
+    // });
+
+    // $.getJSON("http://localhost:8000/data.json", function (data) {
+    //   console.log(data);
+    // });
+  });
+});
+</script>
+</head>
+<body>
+
+<input type="text" id="username" placeholder="github username"><br>
+<input type="password" id="password" placeholder="github password"><br>
+<input type="button" id="send-request" value="Send Ajax Request">
+
+</body>
+</html>

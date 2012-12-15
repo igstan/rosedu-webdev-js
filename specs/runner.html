@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS</title>
+<link rel="stylesheet" type="text/css" href="lib/jasmine-1.2.0/jasmine.css">
+<script src="lib/jasmine-1.2.0/jasmine.js"></script>
+<script src="lib/jasmine-1.2.0/jasmine-html.js"></script>
+<script src="lib/underscore-1.4.2.js"></script>
+<script src="lib/jquery-1.8.3.js"></script>
+<script src="specs/lang.js"></script>
+<script src="specs/dom.js"></script>
+<script src="specs/oop.js"></script>
+<script src="specs/cps.js"></script>
+<script src="main.js"></script>
+</head>
+<body>
+
+<div id="fixture" style="display:none;">
+  <!-- This DIV's contents will be replaced with the contents of #clean-fixture
+  after each test is run so that DOM tests don't interfere with each other. -->
+</div>
+
+<script id="clean-fixture" type="application/x-template">
+  <span>empty</span>
+  <span class="test-class">span A</span>
+  <div id="some-div" title="this is some-div">
+    <span class="test-class">span B</span>
+    <span class="test-class">span C</span>
+    <span class="test-class">span D</span>
+  </div>
+  <div class="some-div">
+    <span class="test-class">span E</span>
+  </div>
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM Events</title>
+<style type="text/css">
+.color-change { padding: 40px; margin-top: 30px; background: #e0e0e0; }
+.what-color { font-size: 100%; padding: 5px; width: 400px; }
+</style>
+</head>
+<body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var button = document.querySelector("button");
+
+  button.addEventListener("click", function (event) {
+    document.title = "Title Changed!";
+  });
+});
+</script>
+<button>change title</button>
+
+<hr>
+<!-- Exercise: write a handler that will add another item to the list above  -->
+<!-- The new item must contain the text "item i" where "i" is the next       -->
+<!-- logical index. Also, the item must display a tooltip containing the     -->
+<!-- same text. Tooltips are obtained by adding a "title" attribute.         -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Your code here.
+});
+</script>
+<ul>
+  <li>item 1</li>
+  <li>item 2</li>
+  <li>item 3</li>
+  <!-- <li title="item 4">item 4</li> -->
+</ul>
+<button id="add-item">add item</button>
+
+<hr>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // This is where we left off last time.
+  // Change the color of the .color-change DIV on hover.
+});
+</script>
+<div class="color-change">hover me</div>
+
+<hr>
+<!-- Exercise: on the "keyup" event update the text of the .color-change     -->
+<!-- DIV to be the same as the text typed in the INPUT element below. You    -->
+<!-- can find this text using element.value, where element is the input.     -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Your code here.
+});
+</script>
+<input type="text" class="what-color">
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Event Propagation</title>
+<style type="text/css">
+p {
+  margin: 0;
+}
+.level-1 {
+  padding: 35px;
+  border: solid red 1px;
+}
+.level-2 {
+  padding: 35px;
+  border: solid green 1px;
+}
+</style>
+<script>
+var $ = function (selector) {
+  return selector === document ? document : document.querySelector(selector);
+};
+
+var log = function (message, event) {
+  console.group(message);
+  // console.log("event.target", event.target);
+  console.log("event.currentTarget", event.currentTarget);
+  console.groupEnd();
+};
+
+var traceEvent = function () {
+  document.addEventListener("click", function (event) {
+    log("capture document", event);
+  }, true);
+
+    $(".level-1").addEventListener("click", function (event) {
+      log("capture level 1", event);
+    }, true);
+
+      $(".level-2").addEventListener("click", function (event) {
+        log("capture level 2", event);
+      }, true);
+
+        $(".level-3").addEventListener("click", function (event) {
+          log("capture level 3", event);
+        }, true);
+
+        $(".level-3").addEventListener("click", function (event) {
+          log("bubbling level 3", event);
+        }, false);
+
+      $(".level-2").addEventListener("click", function (event) {
+        log("bubbling level 2", event);
+      }, false);
+
+    $(".level-1").addEventListener("click", function (event) {
+      log("bubbling level 1", event);
+    }, false);
+
+  document.addEventListener("click", function (event) {
+    log("bubbling document", event);
+    event.preventDefault();
+  }, false);
+};
+
+document.addEventListener("DOMContentLoaded", traceEvent);
+</script>
+</head>
+<body>
+
+<div class="level-1">
+  <p class="level-2">
+    <a class="level-3" href="http://www.google.com/">click me</a>
+  </p>
+</div>
+
+</body>
+</html>

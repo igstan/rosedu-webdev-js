@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Event Delegation</title>
+<style type="text/css">
+ul { border: solid red 1px; }
+li { border: solid green 1px; padding: 10px; }
+</style>
+</head>
+<body>
+
+<ul>
+  <li>item 1</li>
+  <li>item 2</li>
+  <li>item 3</li>
+  <li>item 4</li>
+  <li>item 5</li>
+</ul>
+
+<button id="add-item">Add Item</button>
+
+<script>
+var addItem = function () {
+  var li = document.createElement("li");
+  li.textContent = "item " + (document.querySelectorAll("li").length + 1);
+  document.querySelector("ul").appendChild(li);
+};
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  "use strict";
+
+  document.querySelector("#add-item").addEventListener("click", addItem);
+});
+</script>
+
+</body>
+</html>
